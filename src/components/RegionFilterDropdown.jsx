@@ -8,6 +8,7 @@ const RegionFilterDropdown = () => {
     const regionFilter = useSelector((state) => state.regionFilter);
     const dispatch = useDispatch();
     const options = [
+        { value: "", label: "All"},
         { value: "africa", label: "Africa"},
         { value: "america", label: "America"},
         { value: "asia", label: "Asia"},
@@ -20,6 +21,8 @@ const RegionFilterDropdown = () => {
         if(val) {
             dispatch(setSelectedRegion(val));
             dispatch(filter(val));
+        } else {
+            dispatch(clearSelectedRegion());
         }
     }
 

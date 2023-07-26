@@ -3,13 +3,14 @@ import { API } from "../../utils/api";
 import axios from 'axios';
 
 import { searchCountriesByName } from '../nameSearch/nameSearchSlice';
-import { filterCountriesByRegion } from '../regionFilter/regionFilterSlice';
+import { filterCountriesByRegion, clearSelectedRegion } from '../regionFilter/regionFilterSlice';
 
 // define the initial state (or skeleton) of this part of the application
 const initialState = {
     allCountries: [],
     loading: false,
     errorMsg: "",
+    selectedDisplayCountry: {},
     displayedCountries: []
 };
 
@@ -20,13 +21,32 @@ export const fetchAllCountries = createAsyncThunk(
     }
 )
 
+export const fetchCountryByAlphaCode = createAsyncThunk(
+    'country/fetchCountryByAlphaCode',
+    async (code) => {
+        return axios.get(`${API.alphaSearch}/${code}`).then((response) => response.data);
+    }
+)
+
 const countrySlice = createSlice({
     name: 'country',
-    initialState, 
+    initialState,
     reducers: {
         setCountries: (state, action) => {
             state.loading = false;
             state.displayedCountries = action.payload;
+            state.errorMsg = "";
+        },
+
+        setSelectedDisplayCountry: (state, action) => {
+            state.loading = false;
+            state.selectedDisplayCountry = action.payload;
+            state.errorMsg = "";
+        },
+
+        clearSelectedDisplayCountry: (state) => {
+            state.loading = false;
+            state.selectedDisplayCountry = {};
             state.errorMsg = "";
         }
     },
@@ -51,6 +71,28 @@ const countrySlice = createSlice({
         })
 
 
+        // SECTION: Fetching Country info by the alpha code 
+        builder.addCase(fetchCountryByAlphaCode.pending, (state) => {
+            state.loading = true;
+            state.errorMsg = "";
+            state.selectedDisplayCountry = {};
+        })
+        builder.addCase(fetchCountryByAlphaCode.fulfilled, (state, action) => {
+            state.loading = false;
+            state.errorMsg = "";
+            state.selectedDisplayCountry = action.payload[0];
+        })
+        builder.addCase(fetchCountryByAlphaCode.rejected, (state, action) => {
+            state.loading = false;
+            state.errorMsg = action.error.message;
+            state.selectedDisplayCountry = {};
+        })
+
+
+
+
+
+
         builder.addCase(searchCountriesByName.pending, (state, action) => {
             state.loading = true;
             state.displayedCountries = action.payload;
@@ -66,7 +108,7 @@ const countrySlice = createSlice({
             state.displayedCountries = [];
             state.errorMsg = action.error.message;
         })
-        
+
 
         builder.addCase(filterCountriesByRegion.pending, (state) => {
             state.loading = true;
@@ -77,17 +119,27 @@ const countrySlice = createSlice({
             state.loading = false;
             state.displayedCountries = action.payload;
             state.errorMsg = "";
-        })        
+        })
         builder.addCase(filterCountriesByRegion.rejected, (state, action) => {
             state.loading = false;
             state.displayedCountries = [];
             state.errorMsg = action.error.message;
         })
-    
+
+
+
+        // Changing the selected retion to All
+        builder.addCase(clearSelectedRegion, (state) => {
+            state.loading = false;
+            state.displayedCountries = state.allCountries;
+            state.selectedDisplayCountry = {};
+            state.error = "";
+        })
+
     }
 })
 
 export default countrySlice.reducer;
 
-export const { setCountries } = countrySlice.actions;
+export const { setCountries, setSelectedDisplayCountry, clearSelectedDisplayCountry } = countrySlice.actions;
 

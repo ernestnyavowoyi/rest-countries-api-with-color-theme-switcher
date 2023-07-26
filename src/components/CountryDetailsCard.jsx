@@ -1,22 +1,39 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchCountryByAlphaCode, setSelectedDisplayCountry, clearSelectedDisplayCountry } from '../features/country/countrySlice';
 
 const CountryDetailsCard = () => {
 
     const { cca3 } = useParams();
     const navigate = useNavigate();
-    const countries = useSelector((state) => state.allCountries.allCountries);
+    const countriesState = useSelector((state) => state.allCountries);
+    const allCountries = countriesState.allCountries;
+    const selectedDisplayCountry = countriesState.selectedDisplayCountry;
 
-    const [countryInfo, setCountryInfo] = useState([]);
+    const dispatch = useDispatch();
 
+    const handleBorderCountryClick = (e) => {
+        e.preventDefault();
+        setCountryCode(e.target.innerText.trim());
+        console.log('the thing is supposed to change');
+        navigate(`/${e.target.innerText}`);
+    }
+
+    const [countryCode, setCountryCode] = useState(cca3);
 
     useEffect(() => {
-        console.log(`The cca3 is now ${cca3}`)
-        const info = countries.filter((country) => country.cca3 === cca3)['0'];
-        setCountryInfo(info);
-
-    }, []);
+        console.log(`All for ${cca3}`);
+        if(allCountries.length) {
+            console.log(`There were countries before oo`);
+            const info = allCountries.filter((country) => country.cca3 === cca3);
+            console.log(info[0]);
+            dispatch(setSelectedDisplayCountry(info[0]));
+        } else {
+            console.log(`WTF!.... we are crusing around by starting from this route!`);
+            dispatch(fetchCountryByAlphaCode(cca3));
+        }
+    }, [countryCode]);
 
     return (
         <>
@@ -24,16 +41,22 @@ const CountryDetailsCard = () => {
                 <button type="button" style={{ border: '1px solid #eee', color: '#999', padding: '30px' }} onClick={() => navigate('/')}>Back</button>
             </div>
 
-            <div>
-                <p>The country with the country code {cca3} will be available here.</p>
-                <p>The full details of the country you clicked on will be available here.</p>
-                <p>Thanks to the useful extraction of the search params!</p>
-            </div>
-            <div className="border_countries">
-                <p>{cca3}</p>
-                <ul>Borders: {countryInfo && countryInfo.borders ? countryInfo.borders.map((border) => (<li key={border}>{border}</li>)) : (<div>No borders</div>)}</ul>
+            <div className="result">
+                {
+                    countriesState.loading ? <p>Loading...</p> : 
+                    countriesState.errorMsg ? <p>There was an error: {countriesState.errorMsg}</p> :
+                    <>
+                        <div>
+                            <p>The country with the country code {cca3} will be available here.</p>
+                        </div>
+                        <div className="border_countries">
+                            <ul>Borders: {selectedDisplayCountry && selectedDisplayCountry.borders ? selectedDisplayCountry.borders.map((border) => (<li onClick={handleBorderCountryClick} key={border}>{border}</li>)) : (<div>No borders</div>)}</ul>
 
+                        </div>
+                    </>
+                }    
             </div>
+
         </>
     )
 }
