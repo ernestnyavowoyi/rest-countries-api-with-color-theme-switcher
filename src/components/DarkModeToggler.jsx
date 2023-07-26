@@ -1,6 +1,8 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { toggleDarkMode } from '../features/darkMode/darkModeSlice'
+import { useDispatch } from 'react-redux';
+import { toggleDarkMode } from '../features/darkMode/darkModeSlice';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 const DarkModeToggler = () => {
 
     const dispatch = useDispatch();
@@ -12,8 +14,10 @@ const DarkModeToggler = () => {
   return (
     <>
         <div onClick={handleNightModeToggle}>
-            <span>&#x1F319;</span> &nbsp;
-            Toggle
+            <div className="dark_mode_toggler">
+              <p><FontAwesomeIcon icon="home" /></p>
+              <p>Dark Mode</p>
+            </div>
         </div>
     </>
   )
