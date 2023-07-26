@@ -9,11 +9,8 @@ import RegionFilterDropdown from './RegionFilterDropdown';
 const Countries = React.memo(() => {
 
     const countriesState = useSelector((state) => state.allCountries);
+    const modeState = useSelector((state) => state.darkMode);
     const dispatch = useDispatch();
-
-    const handleOnClick = ({ key }) => {
-        console.log(`This is the key ${key}`);
-    }
 
     useEffect(() => {
         console.log('This is a nice must-have feature!');

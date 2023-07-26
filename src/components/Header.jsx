@@ -1,8 +1,11 @@
 import React from 'react'
-
+import DarkModeToggler from './DarkModeToggler';
 const Header = () => {
   return (
-    <div>THE ACTUAL HEADER WILL BE HERE</div>
+    <div>
+      <p>Title of the project</p>
+      <DarkModeToggler />
+    </div>
   )
 }
 

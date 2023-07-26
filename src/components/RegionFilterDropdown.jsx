@@ -1,11 +1,13 @@
 import React from 'react'
 import { setSelectedRegion, clearSelectedRegion } from '../features/regionFilter/regionFilterSlice';
 import { useSelector, useDispatch } from 'react-redux';
-import filterCountriesByRegion, { filterCountriesByRegion as filter } from '../features/regionFilter/regionFilterSlice';
+import { filterCountriesByRegion as filter } from '../features/regionFilter/regionFilterSlice';
+
 
 const RegionFilterDropdown = () => {
 
     const regionFilter = useSelector((state) => state.regionFilter);
+    
     const dispatch = useDispatch();
     const options = [
         { value: "", label: "All"},
@@ -33,6 +35,7 @@ const RegionFilterDropdown = () => {
                 return <option key={option.value} value={option.value}>{option.label}</option>
             })}
         </select>
+        <p>{}</p>
     </div>
   )
 }

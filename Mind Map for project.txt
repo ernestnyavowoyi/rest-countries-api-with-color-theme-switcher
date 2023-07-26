@@ -1,0 +1,29 @@
+Countries is a feature:
+
+
+countries --> list of countries retrieved from the api
+selectedCountry --> 
+searchTerm --> The search term for countries we are interested in finding.
+
+
+Filtering is a feature:
+regionFilterOptions --> The list of regions to filter by (e.g Africa, America, etc.),
+
+regionFilterActiveOption --> The currently selected region.
+
+
+Dark Mode is a feature: 
+isDarkMode --> Returns true or false for whether we are in dark mode or not.
+
+
+
+
+Country info for selection:
+
+On the countries list screen:
+Official Name, Population, Region, Capital
+
+
+On the details page of a particular country:
+Flag (SVG format), Native Name, Population, Region, Sub Region, Capital,
+TLD (Top Level Domain), Currencies, Languages, Borders (Border Countries),

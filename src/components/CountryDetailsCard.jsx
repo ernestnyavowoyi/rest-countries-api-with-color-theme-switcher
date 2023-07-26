@@ -7,7 +7,10 @@ const CountryDetailsCard = () => {
 
     const { cca3 } = useParams();
     const navigate = useNavigate();
+
     const countriesState = useSelector((state) => state.allCountries);
+    const darkModeState = useSelector((state) => state.darkMode);
+
     const allCountries = countriesState.allCountries;
     const selectedDisplayCountry = countriesState.selectedDisplayCountry;
 
@@ -56,6 +59,7 @@ const CountryDetailsCard = () => {
                     </>
                 }    
             </div>
+            <p>N.B: We are currently using the {darkModeState.modeName} mode!</p>
 
         </>
     )
