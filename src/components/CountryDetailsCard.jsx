@@ -40,27 +40,29 @@ const CountryDetailsCard = () => {
 
     return (
         <>
-            <div className="back_button">
-                <button type="button" style={{ border: '1px solid #eee', color: '#999', padding: '30px' }} onClick={() => navigate('/')}>Back</button>
+            <div className='details_page'>
+                <div className="back_button">
+                    <button type="button" style={{ border: '1px solid #eee', color: '#999', padding: '30px' }} onClick={() => navigate('/')}>Back</button>
+                </div>
+
+                <div className="country_card_details">
+                    {
+                        countriesState.loading ? <p>Loading...</p> : 
+                        countriesState.errorMsg ? <p>There was an error: {countriesState.errorMsg}</p> :
+                        <>
+                            <div>
+                                <p>The country with the country code {cca3} will be available here.</p>
+                            </div>
+                            <div className="border_countries">
+                                <ul>Borders: {selectedDisplayCountry && selectedDisplayCountry.borders ? selectedDisplayCountry.borders.map((border) => (<li onClick={handleBorderCountryClick} key={border}>{border}</li>)) : (<div>No borders</div>)}</ul>
+
+                            </div>
+                        </>
+                    }    
+                </div>
+            
+                <p>N.B: We are currently using the {darkModeState.modeName} mode!</p>
             </div>
-
-            <div className="result">
-                {
-                    countriesState.loading ? <p>Loading...</p> : 
-                    countriesState.errorMsg ? <p>There was an error: {countriesState.errorMsg}</p> :
-                    <>
-                        <div>
-                            <p>The country with the country code {cca3} will be available here.</p>
-                        </div>
-                        <div className="border_countries">
-                            <ul>Borders: {selectedDisplayCountry && selectedDisplayCountry.borders ? selectedDisplayCountry.borders.map((border) => (<li onClick={handleBorderCountryClick} key={border}>{border}</li>)) : (<div>No borders</div>)}</ul>
-
-                        </div>
-                    </>
-                }    
-            </div>
-            <p>N.B: We are currently using the {darkModeState.modeName} mode!</p>
-
         </>
     )
 }

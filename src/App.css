@@ -12,24 +12,30 @@
 body {
   font-family: 'Nunito Sans', sans-serif !important;
   font-size: 16px;
+  min-height: 100vh;
+  height: 100%;
+  background-color: var(--white);
+}
+
+.header_container {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 999;
+  bottom: 150px;
+  font-weight: 800;
+  margin-bottom: .5rem;
+  height: 80px;
+  box-shadow: 0px 4px 4px var(--dark-gray);
+  background-color: var(--white);
 }
 
 .header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 999;
-  bottom: 550px;
-  font-weight: 800;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2.5rem;
-  padding: 10px 15px;
-  height: 80px;
-  box-shadow: 0px 4px 4px var(--dark-gray);
-  background-color: var(--white);
+  margin: 10px 30px 10px 10px;
 }
 
 
@@ -43,9 +49,9 @@ body {
 
 .country_name_search_input {
   box-shadow: 0 4px 4px var(--dark-gray);
-  margin: 250px 20px 50px 20px;
+  margin: 100px 20px 50px 20px;
   position: relative;
-  top: 120px;
+  top: 20px;
   padding: 20px;
   display: flex;
   flex-direction: row;
@@ -87,10 +93,10 @@ input:focus {
 }
 
 .region_filter_select {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--very-dark-blue);
   line-height: 16px;
-  border: unset;
+  border: none !important;
   border-radius: 0.25rem;
   box-shadow: 0 4px 0 var(--very-light-gray);
   margin: 20px 0 20px 20px;
@@ -98,13 +104,12 @@ input:focus {
   width: 200px;
 }
 
-.region_filter_select > option:checked {
-  background-color: unset;
-}
-
-.region_filter_select > .option {
-  border: 3px solid crimson !important;
-  background-color: #fff !important;
+.region_filter_select option {
+  border: 3px solid green !important;
+  font-size: 14px !important;
+  line-height: 16px !important;
+  padding: 30px 50px !important;
+  margin: 20px 30px !important;
 }
 
 .country_card {
@@ -136,8 +141,18 @@ p.country_name {
   font-weight: 800;
 }
 
-.country_stat_basic > p > span {
+
+.country_stat_basic > p {
   font-size: 14px;
+  line-height: 16px !important;
+}
+
+.country_stat_basic > p > span {
   font-weight: 600;
-  line-height: 16px;
+}
+
+.details_page {
+  background-color: cyan;
+  position: relative;
+  top: 150px;
 }
