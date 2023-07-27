@@ -22,16 +22,25 @@ const CountryDetailsCard = () => {
     const dispatch = useDispatch();
 
     const getNativeName = (obj) => {
+        if(!obj) {
+            return "";
+        };
         const keys = Object.keys(obj);
         const lastKey = keys[keys.length - 1];
         return obj[lastKey].common;
     }
 
     const getTopLevelDomains = (arr) => {
+        if(!arr || !arr.length) {
+            return "";
+        };
         return arr.join(", ");
     }
 
     const getCurrencies = (obj) => {
+        if(!obj) {
+            return "";
+        };
         const keys = Object.keys(obj);
         const result = keys.map((curr) => obj[curr].name);
         return result.join(", ");
