@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchCountryByAlphaCode, setSelectedDisplayCountry } from '../features/country/countrySlice';
@@ -14,7 +14,7 @@ const CountryDetailsCard = () => {
     const navigate = useNavigate();
 
     const countriesState = useSelector((state) => state.allCountries);
-    const darkModeState = useSelector((state) => state.darkMode);
+    // const darkModeState = useSelector((state) => state.darkMode);
 
     const allCountries = countriesState.allCountries;
     const selectedDisplayCountry = countriesState.selectedDisplayCountry;
@@ -39,18 +39,18 @@ const CountryDetailsCard = () => {
 
     const handleBorderCountryClick = (e) => {
         e.preventDefault();
-        setCountryCode(e.target.innerText.trim());
+        // setCountryCode(e.target.innerText.trim());
         console.log('the thing is supposed to change');
         navigate(`/${e.target.innerText}`);
     }
 
-    const [countryCode, setCountryCode] = useState("");
+    // const [countryCode, setCountryCode] = useState("");
 
 
 
     useEffect(() => {
         console.log(`All for ${cca3}`);
-        setCountryCode(cca3);
+        // setCountryCode(cca3);
         if (allCountries.length) {
             console.log(`There were countries before oo`);
             const info = allCountries.filter((country) => country.cca3 === cca3);
@@ -63,7 +63,8 @@ const CountryDetailsCard = () => {
     }, [location.pathname]);
 
     return (
-        <>
+        <div className="details_page_container">
+            
             <div className='details_page'>
                 <div className="back_button_container">
                     <button className='button' type="button" onClick={() => navigate('/')}><span><FontAwesomeIcon icon={faArrowLeftLong} /></span> <span>Back</span></button>
@@ -95,10 +96,9 @@ const CountryDetailsCard = () => {
                                             <p>Currencies: <span>{getCurrencies(selectedDisplayCountry.currencies)}</span></p>
                                             <p>Languages: <span>{selectedDisplayCountry.region}</span></p>
                                         </div>
-                                        <p className="border_countries_header">Border Countries:</p>
                                         <div className="border_countries_container">
-                                            <ul className='border_countries'>{selectedDisplayCountry.borders ? selectedDisplayCountry.borders.map((border) => (<li className='button' onClick={handleBorderCountryClick} key={border}>{border}</li>)) : (<div>No border countries.</div>)}</ul>
-
+                                            <p className="border_countries_header">Border Countries:</p>
+                                            <ul className='border_countries'>{selectedDisplayCountry.borders ? selectedDisplayCountry.borders.map((border) => (<li className='button' onClick={handleBorderCountryClick} key={border}>{border}</li>)) : (<span>No border countries.</span>)}</ul>
                                         </div>
                                     </>
                                 }
@@ -109,9 +109,8 @@ const CountryDetailsCard = () => {
                             </div>
                 }
 
-                <p>N.B: We are currently using the {darkModeState.modeName} mode!</p>
             </div>
-        </>
+        </div>
     )
 }
 

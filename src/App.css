@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap');
 
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 :root {
   --dark-blue: hsl(209, 23%, 22%);
   --very-dark-blue: hsl(207, 26%, 17%);
@@ -9,25 +16,46 @@
   --white: hsl(0, 0%, 100%);
 }
 
-body {
+html, body {
   font-family: 'Nunito Sans', sans-serif !important;
   font-size: 16px;
-  min-height: 100vh;
   height: 100%;
-  background-color: var(--white);
 }
 
-.header_container {
+.app, .app_darkMode {
+  background-color: var(--white);
+  color: var(--very-dark-blue);
+  padding-bottom: 0.30vh !important;
+  min-height: 100vh !important;
+  height: 100% !important;
+}
+
+.app_darkMode{
+  background-color: var(--very-dark-blue);
+  color: var(--white);
+}
+
+.header_container, .header_container_darkMode {
   position: fixed;
   top: 0;
   width: 100vw;
   z-index: 999;
   bottom: 150px;
   font-weight: 800;
-  margin-bottom: .5rem;
+  padding-bottom: .5rem;
   height: 80px;
   box-shadow: 0px 4px 4px var(--dark-gray);
   background-color: var(--white);
+  color: var(--very-dark-blue) !important;
+  margin-bottom: 50px;
+}
+
+
+
+.header_container_darkMode {
+  background-color: var(--very-dark-blue) !important;
+  color: var(--white) !important;
+  box-shadow: 0 4px 4px 0 var(--dark-blue) !important;
 }
 
 .header {
@@ -49,15 +77,39 @@ body {
 
 .country_name_search_input {
   box-shadow: 0 4px 4px var(--dark-gray);
-  margin: 100px 20px 50px 20px;
+  margin: 80px 20px 50px 20px;
   position: relative;
-  top: 20px;
-  padding: 10px;
+  top: 30px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   border-radius: 0.25rem;
   align-items: center;
+}
+
+#countrySearchInput {
+  border: none;
+  font-size: 12px;
+  color: var(--very-dark-blue);
+  padding: 25px 0 !important;
+  width: 100%;
+  font-weight: 300;
+  background-color: transparent;
+}
+
+
+
+.app_darkMode #countrySearchInput {
+  color: var(--white);
+  background-color: var(--very-dark-blue);
+  box-shadow: 0 4 0 0 var(--dark-blue);
+}
+
+
+
+
+.app_darkMode .country_name_search_input {
+  box-shadow: 0 4px 4px var(--dark-blue);
 }
 
 .country_name_search_input>label {
@@ -66,13 +118,6 @@ body {
   color: var(--dark-gray);
 }
 
-.country_name_search_input>input {
-  border: none;
-  font-size: 12px;
-  color: var(--very-dark-blue);
-  padding: 25px 0 !important;
-  width: 100%;
-}
 
 input:focus {
   border: 1px solid var(--dark-gray);
@@ -93,21 +138,44 @@ input:focus {
   padding: 40px 0 !important;
 }
 
-select#region_filter {
-  border-radius: 0.25rem;
-  padding: 20px;
-  width: 200px;
-  margin: 20px 0 70px 20px;
-  box-shadow: 0 4px 0 var(--very-light-gray);
-  font-size: 14px !important;
-  color: var(--very-dark-blue) !important;
+.region_filter_div select {
+  background-color: transparent !important;
+  color: var(--very-dark-blue);
+  width: 250px;
   border: none !important;
+  font-size: 14px !important;
+  box-shadow: 0 4px 4px var(--dark-blue);
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+  border-radius: 0.25rem;
+  margin: 20px 0 70px 20px;
+  padding: 20px !important;
 }
 
-select#region_filter option {
-  background-color: var(--very-light-gray) !important;
+.region_filter_div select > option {
+  background-color: var(--white) !important;
+  color: var(--very-dark-blue) !important;
+}
+
+.region_filter_div select > option:checked {
+  color: #333 !important;
+}
+
+.app_darkMode .region_filter_div select > option {
+  background-color: var(--very-dark-blue) !important;
+  color: var(--white) !important;
+}
+
+.app_darkMode #region_filter {
+  background-color: var(--dark-blue);
+  color: var(--white);
+}
+
+#region_filter option {
+  color: var(--very-dark-blue);
+  background-color: var(--white);
   line-height: 16px !important;
-  font-size: 18px !important;
   margin-top: 30px !important;
   margin-bottom: 30px !important;
   padding-top: 50px !important;
@@ -125,7 +193,7 @@ select#region_filter option:focus {
 
 .country_card {
   max-height: 375px;
-  height: 375px;
+  height: 360px;
   width: 264px;
   margin: 0 auto;
   margin-bottom: 100px;
@@ -147,9 +215,13 @@ select#region_filter option:focus {
 }
 
 p.country_name {
-  color: #333;
+  color: var(--very-dark-blue);
   font-size: 18px;
   font-weight: 800;
+}
+
+.app_darkMode p.country_name {
+  color: var(--white);
 }
 
 
@@ -169,27 +241,40 @@ p.country_name {
 /* Styling of the country details route */
 
 .details_page {
+  display: block;
   position: relative;
-  top: 120px;
+  margin-top: 100px;
   width: 320px !important;
   max-width: 320px !important;
   margin: 0 auto;
+  height: 100% !important;
 }
 
+
 .back_button_container {
-  margin-top: 0px;
+  position: relative;
+  top: -30px;
+  padding-top: 100px;
+  margin-top: 40px; 
   margin-bottom: 50px;
+  max-width: 104px !important;
+  height: 32px !important;
 }
 
 .button {
-  padding: 10px;
-  box-shadow: 0 0px 7px var(--dark-gray);
+  padding: 5px;
+  box-shadow: 0 4px 7px 4px var(--dark-gray);
   border: none;
   margin: 0;
+  margin-bottom: 20px;
+  border-radius: 0.25rem;
+  font-weight: 300 !important;
 }
 
-.back_button_container button {
-  margin-bottom: 20px;
+.app_darkMode .button {
+  box-shadow: 0 0 7px 0 var(--very-dark-blue);
+  background-color: var(--dark-blue);
+  color: var(--white);
 }
 
 .back_button_container button span {
@@ -206,11 +291,24 @@ p.country_name {
   margin: 0 auto;
 }
 
+.country_card_details_not_found {
+  color: var(--dark-blue) !important;
+  background-color: var(--white) !important;
+}
+
+/* .app_darkMode .details_page_container {
+  border: 2px solid red;
+} */
+
+.country_card_details .flag {
+  border-radius: 1.25rem;
+  height: 229px !important;
+}
+
 .country_card_details .flag>img {
   max-width: 320px !important;
   width: 320px !important;
-  object-fit: cover;
-  height: 229px !important;
+  object-fit: contain;
   border-radius: 5.72px;
 }
 
@@ -249,6 +347,7 @@ ul.border_countries {
   padding-right: 0;
   list-style: none;
 }
+
 ul.border_countries > li {
   width: 100%;
   max-width: 96px !important;
@@ -260,4 +359,9 @@ ul.border_countries > li {
 
 ul.border_countries > li:last-child {
   margin: 5px 0 5px 0 !important;
+}
+
+
+.border_countries_container {
+  margin-bottom: 0px !important;
 }

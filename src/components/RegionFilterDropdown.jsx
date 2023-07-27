@@ -29,7 +29,7 @@ const RegionFilterDropdown = () => {
     }
 
   return (
-    <div>
+    <div className="region_filter_div">
         <select value={regionFilter.selectedRegion} onChange={handleChange} name="region_filter" id="region_filter" className="region_filter_select" placeholder="Filter by Region">
             {options.map((option) => {
                 return <option className='option' key={option.value} value={option.value}>{option.label}</option>
