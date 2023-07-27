@@ -1,11 +1,16 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchCountryByAlphaCode, setSelectedDisplayCountry, clearSelectedDisplayCountry } from '../features/country/countrySlice';
+import { fetchCountryByAlphaCode, setSelectedDisplayCountry } from '../features/country/countrySlice';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeftLong } from '@fortawesome/free-solid-svg-icons';
+
 
 const CountryDetailsCard = () => {
 
     const { cca3 } = useParams();
+    const location = useLocation();
+
     const navigate = useNavigate();
 
     const countriesState = useSelector((state) => state.allCountries);
@@ -16,6 +21,22 @@ const CountryDetailsCard = () => {
 
     const dispatch = useDispatch();
 
+    const getNativeName = (obj) => {
+        const keys = Object.keys(obj);
+        const lastKey = keys[keys.length - 1];
+        return obj[lastKey].common;
+    }
+
+    const getTopLevelDomains = (arr) => {
+        return arr.join(", ");
+    }
+
+    const getCurrencies = (obj) => {
+        const keys = Object.keys(obj);
+        const result = keys.map((curr) => obj[curr].name);
+        return result.join(", ");
+    }
+
     const handleBorderCountryClick = (e) => {
         e.preventDefault();
         setCountryCode(e.target.innerText.trim());
@@ -23,11 +44,14 @@ const CountryDetailsCard = () => {
         navigate(`/${e.target.innerText}`);
     }
 
-    const [countryCode, setCountryCode] = useState(cca3);
+    const [countryCode, setCountryCode] = useState("");
+
+
 
     useEffect(() => {
         console.log(`All for ${cca3}`);
-        if(allCountries.length) {
+        setCountryCode(cca3);
+        if (allCountries.length) {
             console.log(`There were countries before oo`);
             const info = allCountries.filter((country) => country.cca3 === cca3);
             console.log(info[0]);
@@ -36,31 +60,55 @@ const CountryDetailsCard = () => {
             console.log(`WTF!.... we are crusing around by starting from this route!`);
             dispatch(fetchCountryByAlphaCode(cca3));
         }
-    }, [countryCode]);
+    }, [location.pathname]);
 
     return (
         <>
             <div className='details_page'>
-                <div className="back_button">
-                    <button type="button" style={{ border: '1px solid #eee', color: '#999', padding: '30px' }} onClick={() => navigate('/')}>Back</button>
+                <div className="back_button_container">
+                    <button className='button' type="button" onClick={() => navigate('/')}><span><FontAwesomeIcon icon={faArrowLeftLong} /></span> <span>Back</span></button>
                 </div>
 
-                <div className="country_card_details">
-                    {
-                        countriesState.loading ? <p>Loading...</p> : 
-                        countriesState.errorMsg ? <p>There was an error: {countriesState.errorMsg}</p> :
-                        <>
-                            <div>
-                                <p>The country with the country code {cca3} will be available here.</p>
-                            </div>
-                            <div className="border_countries">
-                                <ul>Borders: {selectedDisplayCountry && selectedDisplayCountry.borders ? selectedDisplayCountry.borders.map((border) => (<li onClick={handleBorderCountryClick} key={border}>{border}</li>)) : (<div>No borders</div>)}</ul>
+                {countriesState.loading ? <p>Loading...</p> :
 
+                    countriesState.errorMsg.length ? <p>Error: {countriesState.errorMsg}</p> :
+
+                        Object.keys(countriesState.selectedDisplayCountry).length ?
+                            <div className="country_card_details">
+                                {
+                                    <>
+                                        <div className='flag'>
+                                            <img src={selectedDisplayCountry && selectedDisplayCountry.flags.svg} alt="" />
+                                        </div>
+                                        <div className='countryName'>
+                                            <p>{selectedDisplayCountry.name.common}</p>
+                                        </div>
+                                        <div className='country_info_1'>
+                                            <p>Native Name: <span>{getNativeName(selectedDisplayCountry.name.nativeName)}</span></p>
+                                            <p>Population: <span>{selectedDisplayCountry.population}</span></p>
+                                            <p>Region: <span>{selectedDisplayCountry.region}</span></p>
+                                            <p>Sub Region: <span>{selectedDisplayCountry.subregion}</span></p>
+                                            <p>Capital: <span>{selectedDisplayCountry.capital}</span></p>
+                                        </div>
+                                        <div className='country_info_2'>
+                                            <p>Top Level Domain: <span>{getTopLevelDomains(selectedDisplayCountry.tld)}</span></p>
+                                            <p>Currencies: <span>{getCurrencies(selectedDisplayCountry.currencies)}</span></p>
+                                            <p>Languages: <span>{selectedDisplayCountry.region}</span></p>
+                                        </div>
+                                        <p className="border_countries_header">Border Countries:</p>
+                                        <div className="border_countries_container">
+                                            <ul className='border_countries'>{selectedDisplayCountry.borders ? selectedDisplayCountry.borders.map((border) => (<li className='button' onClick={handleBorderCountryClick} key={border}>{border}</li>)) : (<div>No border countries.</div>)}</ul>
+
+                                        </div>
+                                    </>
+                                }
                             </div>
-                        </>
-                    }    
-                </div>
-            
+                            :
+                            <div className='country_card_details_not_found'>
+                                <p>Sorry. The requested country was not found.</p>
+                            </div>
+                }
+
                 <p>N.B: We are currently using the {darkModeState.modeName} mode!</p>
             </div>
         </>

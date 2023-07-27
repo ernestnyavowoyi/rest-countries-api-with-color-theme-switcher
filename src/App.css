@@ -52,7 +52,7 @@ body {
   margin: 100px 20px 50px 20px;
   position: relative;
   top: 20px;
-  padding: 20px;
+  padding: 10px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -60,13 +60,13 @@ body {
   align-items: center;
 }
 
-.country_name_search_input > label {
+.country_name_search_input>label {
   width: 16px;
   margin: 0px 20px;
   color: var(--dark-gray);
 }
 
-.country_name_search_input > input {
+.country_name_search_input>input {
   border: none;
   font-size: 12px;
   color: var(--very-dark-blue);
@@ -75,10 +75,11 @@ body {
 }
 
 input:focus {
-  border: 1px solid blue;
+  border: 1px solid var(--dark-gray);
 }
 
-.country_name_search_input > input:focus, .country_name_search_input > input:focus-visible {
+.country_name_search_input>input:focus,
+.country_name_search_input>input:focus-visible {
   border: none;
 }
 
@@ -86,31 +87,41 @@ input:focus {
   border: none;
 }
 
-.country_name_search_input > input::placeholder {
+.country_name_search_input>input::placeholder {
   color: var(--dark-gray);
   font-size: 12px !important;
   padding: 40px 0 !important;
 }
 
-.region_filter_select {
-  font-size: 14px;
-  color: var(--very-dark-blue);
-  line-height: 16px;
-  border: none !important;
+select#region_filter {
   border-radius: 0.25rem;
-  box-shadow: 0 4px 0 var(--very-light-gray);
-  margin: 20px 0 20px 20px;
   padding: 20px;
   width: 200px;
+  margin: 20px 0 70px 20px;
+  box-shadow: 0 4px 0 var(--very-light-gray);
+  font-size: 14px !important;
+  color: var(--very-dark-blue) !important;
+  border: none !important;
 }
 
-.region_filter_select option {
-  border: 3px solid green !important;
-  font-size: 14px !important;
+select#region_filter option {
+  background-color: var(--very-light-gray) !important;
   line-height: 16px !important;
-  padding: 30px 50px !important;
-  margin: 20px 30px !important;
+  font-size: 18px !important;
+  margin-top: 30px !important;
+  margin-bottom: 30px !important;
+  padding-top: 50px !important;
+  display: block !important;
+  border: none !important;
 }
+
+select#region_filter option:default,
+select#region_filter option:focus {
+  color: var(--dark-gray) !important;
+  border: 5px solid crimson !;
+}
+
+
 
 .country_card {
   max-height: 375px;
@@ -122,7 +133,7 @@ input:focus {
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.country_card > .info {
+.country_card>.info {
   margin-top: 0px;
   margin: 0 20px;
 }
@@ -142,17 +153,111 @@ p.country_name {
 }
 
 
-.country_stat_basic > p {
+.country_stat_basic>p {
   font-size: 14px;
   line-height: 16px !important;
 }
 
-.country_stat_basic > p > span {
+.country_stat_basic>p>span {
   font-weight: 600;
 }
 
+
+
+
+
+/* Styling of the country details route */
+
 .details_page {
-  background-color: cyan;
   position: relative;
-  top: 150px;
+  top: 120px;
+  width: 320px !important;
+  max-width: 320px !important;
+  margin: 0 auto;
+}
+
+.back_button_container {
+  margin-top: 0px;
+  margin-bottom: 50px;
+}
+
+.button {
+  padding: 10px;
+  box-shadow: 0 0px 7px var(--dark-gray);
+  border: none;
+  margin: 0;
+}
+
+.back_button_container button {
+  margin-bottom: 20px;
+}
+
+.back_button_container button span {
+  font-size: 14px;
+  font-weight: 300;
+  display: inline-block;
+  flex-direction: row;
+  margin: 5px 5px;
+  border-radius: 0.5rem;
+}
+
+
+.country_card_details {
+  margin: 0 auto;
+}
+
+.country_card_details .flag>img {
+  max-width: 320px !important;
+  width: 320px !important;
+  object-fit: cover;
+  height: 229px !important;
+  border-radius: 5.72px;
+}
+
+.country_card_details>.countryName {
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.country_card_details>.country_info_1,
+.country_card_details>.country_info_2 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 50px;
+  line-height: 32px;
+}
+
+.country_card_details>.country_info_1 p>span,
+.country_card_details>.country_info_2 p>span {
+  font-weight: 300;
+}
+
+.border_countries_header {
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+ul.border_countries {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-left: 0;
+  padding-right: 0;
+  list-style: none;
+}
+ul.border_countries > li {
+  width: 100%;
+  max-width: 96px !important;
+  min-width: 96px !important;
+  text-align: center;
+  margin: 5px 10px 5px 0 !important;
+  padding: 5px;
+}
+
+ul.border_countries > li:last-child {
+  margin: 5px 0 5px 0 !important;
 }
