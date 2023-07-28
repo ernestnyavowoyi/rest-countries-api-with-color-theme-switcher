@@ -53,8 +53,6 @@ const CountryDetailsCard = () => {
     }
 
     useEffect(() => {
-        console.log(`All for ${cca3}`);
-        // setCountryCode(cca3);
         if (allCountries.length) {
             console.log(`There were countries before oo`);
             const info = allCountries.filter((country) => country.cca3 === cca3);
@@ -85,24 +83,28 @@ const CountryDetailsCard = () => {
                                         <div className='flag'>
                                             <img src={selectedDisplayCountry && selectedDisplayCountry.flags.svg} alt="" />
                                         </div>
-                                        <div className='countryName'>
-                                            <p>{selectedDisplayCountry.name.common}</p>
-                                        </div>
-                                        <div className='country_info_1'>
-                                            <p>Native Name: <span>{getNativeName(selectedDisplayCountry.name.nativeName)}</span></p>
-                                            <p>Population: <span>{selectedDisplayCountry.population}</span></p>
-                                            <p>Region: <span>{selectedDisplayCountry.region}</span></p>
-                                            <p>Sub Region: <span>{selectedDisplayCountry.subregion}</span></p>
-                                            <p>Capital: <span>{selectedDisplayCountry.capital}</span></p>
-                                        </div>
-                                        <div className='country_info_2'>
-                                            <p>Top Level Domain: <span>{getTopLevelDomains(selectedDisplayCountry.tld)}</span></p>
-                                            <p>Currencies: <span>{getCurrencies(selectedDisplayCountry.currencies)}</span></p>
-                                            <p>Languages: <span>{selectedDisplayCountry.region}</span></p>
-                                        </div>
-                                        <div className="border_countries_container">
-                                            <p className="border_countries_header">Border Countries:</p>
-                                            <ul className='border_countries'>{selectedDisplayCountry.borders ? selectedDisplayCountry.borders.map((border) => (<li className='button' onClick={handleBorderCountryClick} key={border}>{border}</li>)) : (<span>No border countries.</span>)}</ul>
+                                        <div className="country_info_container">
+                                            <div className='selected_country_name'>
+                                                <p>{selectedDisplayCountry.name.common}</p>
+                                            </div>
+                                            <div className='country_info'>
+                                                <div className='country_info_1'>
+                                                    <p>Native Name: <span>{getNativeName(selectedDisplayCountry.name.nativeName)}</span></p>
+                                                    <p>Population: <span>{selectedDisplayCountry.population}</span></p>
+                                                    <p>Region: <span>{selectedDisplayCountry.region}</span></p>
+                                                    <p>Sub Region: <span>{selectedDisplayCountry.subregion}</span></p>
+                                                    <p>Capital: <span>{selectedDisplayCountry.capital}</span></p>
+                                                </div>
+                                                <div className='country_info_2'>
+                                                    <p>Top Level Domain: <span>{getTopLevelDomains(selectedDisplayCountry.tld)}</span></p>
+                                                    <p>Currencies: <span>{getCurrencies(selectedDisplayCountry.currencies)}</span></p>
+                                                    <p>Languages: <span>{selectedDisplayCountry.region}</span></p>
+                                                </div>
+                                            </div>
+                                            <div className="border_countries_container">
+                                                <p className="border_countries_header">Border Countries:</p>
+                                                <ul className='border_countries'>{selectedDisplayCountry.borders ? selectedDisplayCountry.borders.map((border) => (<li className='button' onClick={handleBorderCountryClick} key={border}>{border}</li>)) : (<span>No border countries.</span>)}</ul>
+                                            </div>
                                         </div>
                                     </>
                                 }

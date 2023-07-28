@@ -6,26 +6,25 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 
-export const CountryNameSearchInput = () => {
+export const CountryNameSearchInput = React.memo(() => {
     const countryNameSearchState = useSelector((state) => state.nameSearch);
     const allCountries = useSelector((state) => state.allCountries);
     const dispatch = useDispatch();
 
+    const handleClick = () => {
+        if (countryNameSearchState.searchTerm.trimStart() === '') {
+            dispatch(setCountries(allCountries.allCountries));
+        } else {
+            dispatch(searchCountriesByName(countryNameSearchState.searchTerm.trimStart()))
+        }
+    };
+
     return (
         <>
             <div className="country_name_search_input">
-                <label htmlFor="countrySearchInput"><FontAwesomeIcon icon={faSearch} /></label>
-                <input placeholder='Search for a country...' type="text" id="countrySearchInput" onChange={(e) => dispatch(updateSearchTerm(e.target.value.trimStart()))} value={countryNameSearchState.searchTerm} onKeyUp={(key) => { 
-                    if(key.code === 'Enter') {
-                        if(countryNameSearchState.searchTerm.trimStart() === '') {
-                            dispatch(setCountries(allCountries.allCountries));  
-                        } else {
-                            dispatch(searchCountriesByName(countryNameSearchState.searchTerm.trimStart()))
-                        }
-                    }
-                }                     
-                }/>
+                <label htmlFor="countrySearchInput"><FontAwesomeIcon icon={faSearch} onClick={handleClick} /></label>
+                <input placeholder='Search for a country...' type="text" id="countrySearchInput" onChange={(e) => dispatch(updateSearchTerm(e.target.value.trimStart()))} value={countryNameSearchState.searchTerm} />
             </div>
         </>
     )
-}
+})

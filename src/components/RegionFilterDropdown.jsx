@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { filterCountriesByRegion as filter } from '../features/regionFilter/regionFilterSlice';
 
 
-const RegionFilterDropdown = () => {
+const RegionFilterDropdown = React.memo(() => {
 
     const regionFilter = useSelector((state) => state.regionFilter);
     
@@ -18,7 +18,7 @@ const RegionFilterDropdown = () => {
         { value: "oceania", label: "Oceania"},
     ];
 
-    const handleChange = (event) => {
+    const handleChange = React.useCallback((event) => {
         const val = event.target.value.trim();
         if(val) {
             dispatch(setSelectedRegion(val));
@@ -26,7 +26,7 @@ const RegionFilterDropdown = () => {
         } else {
             dispatch(clearSelectedRegion());
         }
-    }
+    }, [])
 
   return (
     <div className="region_filter_div">
@@ -37,6 +37,6 @@ const RegionFilterDropdown = () => {
         </select>
     </div>
   )
-}
+})
 
 export default RegionFilterDropdown

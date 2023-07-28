@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-export const CountryCard = ({ info }) => {
+export const CountryCard = React.memo(({ info }) => {
 
   const navigate = useNavigate();  
 
@@ -27,4 +27,4 @@ export const CountryCard = ({ info }) => {
 
     </>
   )
-}
+}, ((prevObj, nextObj) => { return JSON.stringify(prevObj) === JSON.stringify(nextObj); }))
