@@ -90,7 +90,7 @@ const CountryDetailsCard = () => {
                                             <div className='country_info'>
                                                 <div className='country_info_1'>
                                                     <p>Native Name: <span>{getNativeName(selectedDisplayCountry.name.nativeName)}</span></p>
-                                                    <p>Population: <span>{selectedDisplayCountry.population}</span></p>
+                                                    <p>Population: <span>{Intl.NumberFormat().format(selectedDisplayCountry.population)}</span></p>
                                                     <p>Region: <span>{selectedDisplayCountry.region}</span></p>
                                                     <p>Sub Region: <span>{selectedDisplayCountry.subregion}</span></p>
                                                     <p>Capital: <span>{selectedDisplayCountry.capital}</span></p>
