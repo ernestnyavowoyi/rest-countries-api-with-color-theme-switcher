@@ -1,11 +1,9 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom'
 
 export const CountryCard = ({ info }) => {
 
   const navigate = useNavigate();  
-  const darkModeState = useSelector((state) => state.darkMode);
 
   return (
     <>

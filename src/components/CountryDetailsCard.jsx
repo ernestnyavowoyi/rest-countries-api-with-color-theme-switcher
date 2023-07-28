@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchCountryByAlphaCode, setSelectedDisplayCountry } from '../features/country/countrySlice';
@@ -14,7 +14,6 @@ const CountryDetailsCard = () => {
     const navigate = useNavigate();
 
     const countriesState = useSelector((state) => state.allCountries);
-    // const darkModeState = useSelector((state) => state.darkMode);
 
     const allCountries = countriesState.allCountries;
     const selectedDisplayCountry = countriesState.selectedDisplayCountry;
@@ -52,10 +51,6 @@ const CountryDetailsCard = () => {
         console.log('the thing is supposed to change');
         navigate(`/${e.target.innerText}`);
     }
-
-    // const [countryCode, setCountryCode] = useState("");
-
-
 
     useEffect(() => {
         console.log(`All for ${cca3}`);

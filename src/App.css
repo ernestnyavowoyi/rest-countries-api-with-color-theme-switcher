@@ -8,18 +8,21 @@
 }
 
 :root {
-  --dark-blue: hsl(209, 23%, 22%);
+  --dark-blue: hsl(208, 23%, 22%);
+  --box-dark-mode: rgb(43, 57, 69, 95%);
   --very-dark-blue: hsl(207, 26%, 17%);
   --very-dark-blue-light-mode: hsl(200, 15%, 8%);
   --dark-gray: hsl(0, 0%, 52%);
   --very-light-gray: hsl(0, 0%, 98%);
   --white: hsl(0, 0%, 100%);
+  --error-text: rgb(189, 20, 2);
 }
 
 html, body {
   font-family: 'Nunito Sans', sans-serif !important;
   font-size: 16px;
   height: 100%;
+  max-width: 1440px !important;
 }
 
 .app, .app_darkMode {
@@ -28,6 +31,7 @@ html, body {
   padding-bottom: 0.30vh !important;
   min-height: 100vh !important;
   height: 100% !important;
+  max-width: 1440px !important;
 }
 
 .app_darkMode{
@@ -47,15 +51,15 @@ html, body {
   box-shadow: 0px 4px 4px var(--dark-gray);
   background-color: var(--white);
   color: var(--very-dark-blue) !important;
-  margin-bottom: 50px;
+  margin-bottom: 100px;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
 }
-
-
 
 .header_container_darkMode {
   background-color: var(--very-dark-blue) !important;
   color: var(--white) !important;
-  box-shadow: 0 4px 4px 0 var(--dark-blue) !important;
+  box-shadow: 0 4px 9px 0 var(--box-dark-mode) !important;
 }
 
 .header {
@@ -63,53 +67,59 @@ html, body {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 10px 30px 10px 10px;
+  margin: 10px 0px 10px 0px !important;
+  max-width: 1440px !important;
+  padding: 0 1.25rem 0 1.25rem !important;
 }
-
 
 .dark_mode_toggler {
   display: flex;
   justify-content: space-between;
-  column-gap: 10px;
-  padding: 5px;
+  column-gap: 5px;
 }
 
-
-.country_name_search_input {
-  box-shadow: 0 4px 4px var(--dark-gray);
-  margin: 80px 20px 50px 20px;
+.filter_and_search_container {
+  width: 90% !important;
   position: relative;
   top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  /* margin: 80px 0px 50px 0px; */
+  margin: 80px auto;
+}
+
+.country_name_search_input {
+  box-shadow: 0 2px 9px 0 var(--dark-gray);
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   border-radius: 0.25rem;
   align-items: center;
+  background-color: var(--white) !important;
+  color: var(--very-dark-blue);
+  border: 1px solid var(--very-light-gray) !important;
+}
+
+.app_darkMode .country_name_search_input {
+  box-shadow: 0 2px 9px 0 var(--dark-blue);
+  background-color: var(--very-dark-blue) !important;
 }
 
 #countrySearchInput {
   border: none;
   font-size: 12px;
   color: var(--very-dark-blue);
-  padding: 25px 0 !important;
+  padding: 25px 10px !important;
   width: 100%;
   font-weight: 300;
   background-color: transparent;
 }
 
-
-
 .app_darkMode #countrySearchInput {
   color: var(--white);
-  background-color: var(--very-dark-blue);
+  background-color: transparent;
   box-shadow: 0 4 0 0 var(--dark-blue);
-}
-
-
-
-
-.app_darkMode .country_name_search_input {
-  box-shadow: 0 4px 4px var(--dark-blue);
 }
 
 .country_name_search_input>label {
@@ -117,7 +127,6 @@ html, body {
   margin: 0px 20px;
   color: var(--dark-gray);
 }
-
 
 input:focus {
   border: 1px solid var(--dark-gray);
@@ -138,10 +147,17 @@ input:focus {
   padding: 40px 0 !important;
 }
 
+.region_filter_div {
+  height: 65px;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--very-light-gray) !important;
+}
+
 .region_filter_div select {
   background-color: transparent !important;
   color: var(--very-dark-blue);
-  width: 250px;
+  width: 100%;
   border: none !important;
   font-size: 14px !important;
   box-shadow: 0 4px 4px var(--dark-blue);
@@ -149,7 +165,7 @@ input:focus {
   appearance: button;
   outline: none;
   border-radius: 0.25rem;
-  margin: 20px 0 70px 20px;
+  margin: 0;
   padding: 20px !important;
 }
 
@@ -186,10 +202,7 @@ input:focus {
 select#region_filter option:default,
 select#region_filter option:focus {
   color: var(--dark-gray) !important;
-  border: 5px solid crimson !;
 }
-
-
 
 .country_card {
   max-height: 375px;
@@ -199,6 +212,11 @@ select#region_filter option:focus {
   margin-bottom: 100px;
   border-radius: 0.25rem;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.app_darkMode .country_card {
+  background-color: var(--box-dark-mode) !important;
+  color: var(--white) !important;
 }
 
 .country_card>.info {
@@ -224,7 +242,6 @@ p.country_name {
   color: var(--white);
 }
 
-
 .country_stat_basic>p {
   font-size: 14px;
   line-height: 16px !important;
@@ -233,8 +250,6 @@ p.country_name {
 .country_stat_basic>p>span {
   font-weight: 600;
 }
-
-
 
 
 
@@ -250,13 +265,12 @@ p.country_name {
   height: 100% !important;
 }
 
-
 .back_button_container {
   position: relative;
-  top: -30px;
+  top: 0px;
   padding-top: 100px;
   margin-top: 40px; 
-  margin-bottom: 50px;
+  margin-bottom: 100px;
   max-width: 104px !important;
   height: 32px !important;
 }
@@ -285,7 +299,6 @@ p.country_name {
   margin: 5px 5px;
   border-radius: 0.5rem;
 }
-
 
 .country_card_details {
   margin: 0 auto;
@@ -361,7 +374,81 @@ ul.border_countries > li:last-child {
   margin: 5px 0 5px 0 !important;
 }
 
-
 .border_countries_container {
   margin-bottom: 0px !important;
 }
+
+
+/* Style the feedback container */
+.countries_container .no_countries_found, .countries_container .no_countries_found_error {
+  font-weight: 600;
+  color: var(--error-text) !important;
+  padding: 25px;
+  width: 80%;
+  margin: 0 auto !important;
+}
+
+
+.countries_container .no_countries_found span, .countries_container .no_countries_found_error span {
+  font-weight: 800;
+  display: inline !important;
+}
+
+
+/* Special Media Queries */
+
+@media (min-width: 768px) {
+  
+  .countries_container {
+    margin-top: 100px;
+    width: 100% !important;
+    display: grid;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .country_name_search_input {
+    width: 18rem !important;
+    height: 65px !important;
+    padding: 0 !important;
+    position: unset;
+    top: unset;
+  }
+
+  .filter_and_search_container {
+    width: 100% !important;
+    position: relative;
+    top: 30px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 0px !important;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+}
+
+@media (min-width: 1024px) {
+
+  .countries_container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .country_name_search_input {
+    width: 35rem !important;
+  }
+  
+}
+
+@media (min-width: 1440px) {
+  
+  .countries_container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+}
+
+

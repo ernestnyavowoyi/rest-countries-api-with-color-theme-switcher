@@ -9,7 +9,7 @@ import RegionFilterDropdown from './RegionFilterDropdown';
 const Countries = React.memo(() => {
 
     const countriesState = useSelector((state) => state.allCountries);
-    const modeState = useSelector((state) => state.darkMode);
+    const nameSearchState = useSelector((state) => state.nameSearch);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -22,7 +22,7 @@ const Countries = React.memo(() => {
     }, []);
     return (
         <>
-            <div>
+            <div className='filter_and_search_container'>
                 <CountryNameSearchInput />
                 <RegionFilterDropdown />
             </div>
@@ -37,6 +37,11 @@ const Countries = React.memo(() => {
                                 :
                                 countriesState.displayedCountries.map((country) => <CountryCard key={country.cca3} info={country} />)
                         )
+                }
+                {
+                    nameSearchState.searchTerm && !nameSearchState.searchResults ? <p className='no_countries_found'>No results found</p>
+                    :
+                    nameSearchState.errorMsg && <p className='no_countries_found_error'>No countries matched "<span>{nameSearchState.searchTerm}</span>". Error: <span>{nameSearchState.errorMsg}</span></p>
                 }
             </div>
         </>
