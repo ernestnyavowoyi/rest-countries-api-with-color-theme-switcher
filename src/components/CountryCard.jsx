@@ -14,7 +14,7 @@ export const CountryCard = React.memo(({ info }) => {
           <div className='info'>
             <p className='country_name'>{info.name.common}</p>
             <div className='country_stat_basic'>
-              <p><span className='population'>Population: </span>{info.population}</p>
+              <p><span className='population'>Population: </span>{Intl.NumberFormat().format(info.population)}</p>
               <p><span className='region'>Region: </span>{info.region}</p>
               <p><span className='capital'>Capital: </span>{info.capital}</p>
             </div>
