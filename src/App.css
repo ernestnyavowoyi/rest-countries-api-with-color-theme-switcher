@@ -18,14 +18,16 @@
   --error-text: rgb(189, 20, 2);
 }
 
-html, body {
+html,
+body {
   font-family: 'Nunito Sans', sans-serif !important;
   font-size: 16px;
   height: 100%;
   max-width: 1440px !important;
 }
 
-.app, .app_darkMode {
+.app,
+.app_darkMode {
   background-color: var(--white);
   color: var(--very-dark-blue);
   padding-bottom: 0.30vh !important;
@@ -34,12 +36,13 @@ html, body {
   max-width: 1440px !important;
 }
 
-.app_darkMode{
+.app_darkMode {
   background-color: var(--very-dark-blue);
   color: var(--white);
 }
 
-.header_container, .header_container_darkMode {
+.header_container,
+.header_container_darkMode {
   position: fixed;
   top: 0;
   width: 100vw;
@@ -160,7 +163,7 @@ input:focus {
   width: 100%;
   border: none !important;
   font-size: 14px !important;
-  box-shadow: 0 4px 4px var(--dark-blue);
+  box-shadow: 0 2px 9px 0 var(--dark-gray);
   -webkit-appearance: button;
   appearance: button;
   outline: none;
@@ -169,16 +172,16 @@ input:focus {
   padding: 20px !important;
 }
 
-.region_filter_div select > option {
+.region_filter_div select>option {
   background-color: var(--white) !important;
   color: var(--very-dark-blue) !important;
 }
 
-.region_filter_div select > option:checked {
+.region_filter_div select>option:checked {
   color: #333 !important;
 }
 
-.app_darkMode .region_filter_div select > option {
+.app_darkMode .region_filter_div select>option {
   background-color: var(--very-dark-blue) !important;
   color: var(--white) !important;
 }
@@ -270,7 +273,7 @@ p.country_name {
   position: relative;
   top: 0px;
   padding-top: 100px;
-  margin-top: 40px; 
+  margin-top: 40px;
   margin-bottom: 100px;
   max-width: 104px !important;
   height: 32px !important;
@@ -323,8 +326,9 @@ p.country_name {
 .country_card_details .flag>img {
   max-width: 320px !important;
   width: 320px !important;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 5.72px;
+  max-height: 229px !important;
 }
 
 .country_card_details>.countryName {
@@ -371,7 +375,7 @@ ul.border_countries {
   list-style: none;
 }
 
-ul.border_countries > li {
+ul.border_countries>li {
   width: 100%;
   max-width: 96px !important;
   min-width: 96px !important;
@@ -380,7 +384,7 @@ ul.border_countries > li {
   padding: 5px;
 }
 
-ul.border_countries > li:last-child {
+ul.border_countries>li:last-child {
   margin: 5px 0 5px 0 !important;
 }
 
@@ -390,7 +394,8 @@ ul.border_countries > li:last-child {
 
 
 /* Style the feedback container */
-.countries_container .no_countries_found, .countries_container .no_countries_found_error {
+.countries_container .no_countries_found,
+.countries_container .no_countries_found_error {
   font-weight: 600;
   color: var(--error-text) !important;
   padding: 25px;
@@ -399,7 +404,8 @@ ul.border_countries > li:last-child {
 }
 
 
-.countries_container .no_countries_found span, .countries_container .no_countries_found_error span {
+.countries_container .no_countries_found span,
+.countries_container .no_countries_found_error span {
   font-weight: 800;
   display: inline !important;
 }
@@ -415,7 +421,7 @@ ul.border_countries > li:last-child {
     max-width: 1440px !important;
     width: 100% !important;
   }
-  
+
   .countries_container {
     margin-top: 100px;
     width: 100% !important;
@@ -458,10 +464,10 @@ ul.border_countries > li:last-child {
     position: unset;
     padding-top: 100px;
     margin-left: 5.5rem;
-    margin-top: 40px; 
+    margin-top: 40px;
   }
 
-  .app_darkMode .back_button_container > button {
+  .app_darkMode .back_button_container>button {
     box-shadow: 2px 2px 7px 0 var(--dark-gray) !important;
   }
 
@@ -471,14 +477,13 @@ ul.border_countries > li:last-child {
     padding: 3rem 3rem !important;
   }
 
-  .selected_country_name > p {
+  .selected_country_name>p {
     font-size: 24px;
     font-weight: 800;
   }
 
-
-
-  .country_info, .border_countries {
+  .country_info,
+  .border_countries {
     width: 35rem !important;
     display: flex;
     justify-content: space-between;
@@ -498,6 +503,17 @@ ul.border_countries > li:last-child {
     margin-bottom: 40px !important;
   }
 
+  .country_info,
+  .border_countries {
+    width: 35rem !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: row;
+    margin-top: 0px !important;
+  }
+
+
 }
 
 @media (min-width: 1024px) {
@@ -505,14 +521,14 @@ ul.border_countries > li:last-child {
   .countries_container {
     grid-template-columns: repeat(3, 1fr);
   }
-  
+
   .country_name_search_input {
     width: 35rem !important;
   }
 
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1280px) {
 
   .header {
     padding-left: auto !important;
@@ -520,7 +536,7 @@ ul.border_countries > li:last-child {
     max-width: 1440px !important;
     width: 100% !important;
   }
-  
+
   .countries_container {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -537,10 +553,60 @@ ul.border_countries > li:last-child {
     position: unset;
     padding-top: 100px;
     margin-left: 4rem;
-    margin-top: 40px; 
+    margin-top: 40px;
     margin-bottom: 50px;
   }
 
+  .country_card_details {
+    width: 100% !important;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    column-gap: 50px;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-top: 0px !important;
+    min-height: 600px !important;
+  }
+
+  .country_card_details .flag {
+    border-radius: 1.25rem;
+    width: 500px !important;
+    height: 290px !important;
+    max-width: 500px !important;
+    max-height: 290px !important;
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  .country_card_details .flag>img {
+    max-width: 100% !important;
+    width: 500px !important;
+    height: 290px !important;
+    max-width: 500px !important;
+    max-height: 290px !important;
+    object-fit: cover !important;
+  }
+
+  .country_info_container .selected_country_name {
+    padding-top: 0 !important;
+    margin-top: 0;
+  }
+
+  .selected_country_name>p {
+    padding-top: 0px !important;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
+  ul.border_countries li {
+    margin-bottom: 10px !important;
+  }
+
+}
+
+@media (min-width: 1440px) {
+  
   .country_card_details {
     width: 100% !important;
     padding: 0;
@@ -553,6 +619,10 @@ ul.border_countries > li:last-child {
     min-height: 600px !important;
   }
 
+  .selected_country_name>p {
+    font-size: 32px;
+  }
+
   .country_card_details .flag {
     border-radius: 1.25rem;
     height: 401px !important;
@@ -561,7 +631,7 @@ ul.border_countries > li:last-child {
     max-height: 401px !important;
   }
 
-  .country_card_details .flag > img {
+  .country_card_details .flag>img {
     max-width: 100% !important;
     width: 560px !important;
     height: 401px !important;
@@ -570,15 +640,5 @@ ul.border_countries > li:last-child {
     object-fit: cover !important;
   }
 
-  .selected_country_name > p {
-    padding-top: 10px !important;
-  }
 
-  ul.border_countries li {
-    margin-bottom: 10px !important;
-  }
-  
 }
-
-
-
