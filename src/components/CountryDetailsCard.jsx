@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchCountryByAlphaCode, setSelectedDisplayCountry } from '../features/country/countrySlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeftLong } from '@fortawesome/free-solid-svg-icons';
+import { fetchAllCountries } from '../features/country/countrySlice';
+
 
 
 const CountryDetailsCard = () => {
@@ -21,7 +23,7 @@ const CountryDetailsCard = () => {
     const dispatch = useDispatch();
 
     const getNativeName = (obj) => {
-        if(!obj) {
+        if (!obj) {
             return "";
         };
         const keys = Object.keys(obj);
@@ -30,14 +32,14 @@ const CountryDetailsCard = () => {
     }
 
     const getTopLevelDomains = (arr) => {
-        if(!arr || !arr.length) {
+        if (!arr || !arr.length) {
             return "";
         };
         return arr.join(", ");
     }
 
     const getCurrencies = (obj) => {
-        if(!obj) {
+        if (!obj) {
             return "";
         };
         const keys = Object.keys(obj);
@@ -47,26 +49,40 @@ const CountryDetailsCard = () => {
 
     const handleBorderCountryClick = (e) => {
         e.preventDefault();
+        const navLink = e.target.attributes['data-country-code'].value;
+        // console.log(navLink);
+        // return;
         // setCountryCode(e.target.innerText.trim());
         console.log('the thing is supposed to change');
-        navigate(`/${e.target.innerText}`);
+        navigate(`/${navLink || e.target.innerText}`);
     }
 
     useEffect(() => {
         if (allCountries.length) {
             console.log(`There were countries before oo`);
             const info = allCountries.filter((country) => country.cca3 === cca3);
-            console.log(info[0]);
+            // console.log(info[0]);
             dispatch(setSelectedDisplayCountry(info[0]));
+            const bordersCca3 = info[0].borders;
+            let border_countries = [];
+            // console.log(bordersCca3);
+            border_countries = bordersCca3.map((border) => {
+                console.log(`Getting name for ${border}`);
+                return allCountries.filter((country) => country.cca3 === border)[0].name.common;
+            });
+            console.log(`So now we have the following as our border countries!`);
+            console.log(border_countries);
         } else {
             console.log(`WTF!.... we are crusing around by starting from this route!`);
             dispatch(fetchCountryByAlphaCode(cca3));
+            dispatch(fetchAllCountries());
+            // dispatch(setSelectedDisplayCountry(allCountries.filter((country) => country.cca3 === cca3)))
         }
     }, [location.pathname]);
 
     return (
         <div className="details_page_container">
-            
+
             <div className='details_page'>
                 <div className="back_button_container">
                     <button className='button' type="button" onClick={() => navigate('/')}><span><FontAwesomeIcon icon={faArrowLeftLong} /></span> <span>Back</span></button>
@@ -103,7 +119,24 @@ const CountryDetailsCard = () => {
                                             </div>
                                             <div className="border_countries_container">
                                                 <p className="border_countries_header">Border Countries:</p>
-                                                <ul className='border_countries'>{selectedDisplayCountry.borders ? selectedDisplayCountry.borders.map((border) => (<li className='button' onClick={handleBorderCountryClick} key={border}>{border}</li>)) : (<span>No border countries.</span>)}</ul>
+                                                {
+                                                    allCountries.length ? (
+                                                        <ul className='border_countries'>
+                                                            {
+                                                                selectedDisplayCountry.borders && selectedDisplayCountry.borders.map((border) => {
+                                                                    const country_info = allCountries.filter((country) => country.cca3 === border)[0];
+                                                                    return (
+                                                                        <li data-country-code={country_info.cca3} className='button' onClick={handleBorderCountryClick} key={border}>{country_info.name.common}</li>
+                                                                    );
+                                                                })
+                                                            }
+                                                        </ul>
+                                                    ) :
+                                                        (
+                                                            <ul className='border_countries'>{selectedDisplayCountry.borders ? selectedDisplayCountry.borders.map((border) => (<li className='button' onClick={handleBorderCountryClick} key={border}>{border}</li>)) : (<span>No border countries.</span>)}</ul>
+                                                        )
+                                                }
+
                                             </div>
                                         </div>
                                     </>

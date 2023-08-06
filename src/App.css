@@ -23,7 +23,7 @@ body {
   font-family: 'Nunito Sans', sans-serif !important;
   font-size: 16px;
   height: 100%;
-  max-width: 1440px !important;
+  /* max-width: 1440px !important; */
 }
 
 .app,
@@ -33,7 +33,7 @@ body {
   padding-bottom: 0.30vh !important;
   min-height: 100vh !important;
   height: 100% !important;
-  max-width: 1440px !important;
+  /* max-width: 1440px !important; */
 }
 
 .app_darkMode {
@@ -71,7 +71,7 @@ body {
   justify-content: space-between;
   align-items: center;
   margin: 10px 0px 10px 0px !important;
-  max-width: 1440px !important;
+  /* max-width: 1440px !important; */
   padding: 0 1.25rem 0 1.25rem !important;
 }
 
@@ -93,7 +93,7 @@ body {
 }
 
 .country_name_search_input {
-  box-shadow: 0 2px 9px 0 var(--dark-gray);
+  box-shadow: 0 2px 1px 0 var(--dark-gray);
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -163,7 +163,7 @@ input:focus {
   width: 100%;
   border: none !important;
   font-size: 14px !important;
-  box-shadow: 0 2px 9px 0 var(--dark-gray);
+  box-shadow: 0 2px 1px 0 var(--dark-gray);
   -webkit-appearance: button;
   appearance: button;
   outline: none;
@@ -214,7 +214,7 @@ select#region_filter option:focus {
   margin: 0 auto;
   margin-bottom: 100px;
   border-radius: 0.25rem;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
 }
 
 .app_darkMode .country_card {
@@ -281,7 +281,7 @@ p.country_name {
 
 .button {
   padding: 5px;
-  box-shadow: 0 4px 7px 0 var(--dark-gray);
+  box-shadow: 0 1px 2px 0 var(--box-dark-mode);
   border: none;
   margin: 0;
   margin-bottom: 20px;
@@ -290,7 +290,7 @@ p.country_name {
 }
 
 .app_darkMode .button {
-  box-shadow: 2px 2px 7px 0 var(--dark-gray) !important;
+  box-shadow: 0px 2px 0px 0 var(--box-dark-mode) !important;
   border: var(--white);
   background-color: var(--dark-blue);
   color: var(--white);
@@ -331,7 +331,7 @@ p.country_name {
   max-height: 229px !important;
 }
 
-.country_card_details>.countryName {
+.selected_country_name>p {
   font-size: 22px;
   font-weight: 800;
 }
@@ -376,8 +376,8 @@ ul.border_countries {
 }
 
 ul.border_countries>li {
-  width: 100%;
-  max-width: 96px !important;
+  /* width: 100%; */
+  max-width: 190px !important;
   min-width: 96px !important;
   text-align: center;
   margin: 5px 15px 5px 0 !important;
@@ -418,7 +418,7 @@ ul.border_countries>li:last-child {
   .header {
     padding-left: 3.25rem !important;
     padding-right: 3.25rem !important;
-    max-width: 1440px !important;
+    /* max-width: 1440px !important; */
     width: 100% !important;
   }
 
@@ -468,7 +468,7 @@ ul.border_countries>li:last-child {
   }
 
   .app_darkMode .back_button_container>button {
-    box-shadow: 2px 2px 7px 0 var(--dark-gray) !important;
+    box-shadow: 1px 2px 0px 0 var(--box-dark-mode) !important;
   }
 
   .country_card_details {
@@ -533,7 +533,7 @@ ul.border_countries>li:last-child {
   .header {
     padding-left: auto !important;
     padding-right: auto !important;
-    max-width: 1440px !important;
+    /* max-width: 1440px !important; */
     width: 100% !important;
   }
 
@@ -570,7 +570,7 @@ ul.border_countries>li:last-child {
   }
 
   .country_card_details .flag {
-    border-radius: 1.25rem;
+    border-radius: 3.5rem !important;
     width: 500px !important;
     height: 290px !important;
     max-width: 500px !important;
@@ -624,7 +624,6 @@ ul.border_countries>li:last-child {
   }
 
   .country_card_details .flag {
-    border-radius: 1.25rem;
     height: 401px !important;
     width: 560px !important;
     max-width: 560px !important;
