@@ -11,7 +11,7 @@ export const CountryNameSearchInput = React.memo(() => {
     const allCountries = useSelector((state) => state.allCountries);
     const dispatch = useDispatch();
 
-    const handleClick = () => {
+    const handleSearch = () => {
         if (countryNameSearchState.searchTerm.trimStart() === '') {
             dispatch(setCountries(allCountries.allCountries));
         } else {
@@ -22,8 +22,10 @@ export const CountryNameSearchInput = React.memo(() => {
     return (
         <>
             <div className="country_name_search_input">
-                <label htmlFor="countrySearchInput"><FontAwesomeIcon icon={faSearch} onClick={handleClick} /></label>
-                <input placeholder='Search for a country...' type="text" id="countrySearchInput" onChange={(e) => dispatch(updateSearchTerm(e.target.value.trimStart()))} value={countryNameSearchState.searchTerm} />
+                <label htmlFor="countrySearchInput"><FontAwesomeIcon icon={faSearch} /></label>
+                <input placeholder='Search for a country...' type="text" id="countrySearchInput" onChange={(e) => dispatch(updateSearchTerm(e.target.value.trimStart()))} value={countryNameSearchState.searchTerm} onKeyUp={(e) => {
+                    e.code === 'Enter' && handleSearch();
+                }} />
             </div>
         </>
     )
