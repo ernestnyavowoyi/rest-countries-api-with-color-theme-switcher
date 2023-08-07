@@ -11,13 +11,13 @@ export const CountryNameSearchInput = React.memo(() => {
     const allCountries = useSelector((state) => state.allCountries);
     const dispatch = useDispatch();
 
-    const handleSearch = () => {
-        console.log(countryNameSearchState.searchTerm);
-        // return;
-        if (countryNameSearchState.searchTerm.trimStart() === '') {
-            dispatch(setCountries(allCountries.allCountries));
-        } else {
-            dispatch(searchCountriesByName(countryNameSearchState.searchTerm.trimStart()))
+    const handleSearch = (event) => {
+        if(event.keyCode === 13) {
+            if (countryNameSearchState.searchTerm.trimStart() === '') {
+                dispatch(setCountries(allCountries.allCountries));
+            } else {
+                dispatch(searchCountriesByName(countryNameSearchState.searchTerm.trimStart()))
+            }
         }
         return;
     };
