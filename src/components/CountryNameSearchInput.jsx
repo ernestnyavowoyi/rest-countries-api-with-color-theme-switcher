@@ -12,6 +12,7 @@ export const CountryNameSearchInput = React.memo(() => {
     const dispatch = useDispatch();
 
     const handleSearch = (event) => {
+        event.preventDefault();
         if(event.key === "Enter") {
             if (countryNameSearchState.searchTerm.trimStart() === '') {
                 dispatch(setCountries(allCountries.allCountries));
