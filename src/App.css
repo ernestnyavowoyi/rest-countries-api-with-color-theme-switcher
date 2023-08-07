@@ -92,16 +92,28 @@ body {
   margin: 80px auto;
 }
 
-.country_name_search_input {
+.form_input {
   box-shadow: 0 2px 1px 0 var(--dark-gray);
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   border-radius: 0.25rem;
   align-items: center;
+  padding: 0px 5px;
+  border: 1px solid var(--very-light-gray) !important;
+}
+
+.form_input > label {
+  padding: 0px 10px;
+}
+
+.country_name_search_input {
   background-color: var(--white) !important;
   color: var(--very-dark-blue);
-  border: 1px solid var(--very-light-gray) !important;
+}
+
+.app_darkMode .form_input > label {
+  color: var(--white);
 }
 
 .app_darkMode .country_name_search_input {
