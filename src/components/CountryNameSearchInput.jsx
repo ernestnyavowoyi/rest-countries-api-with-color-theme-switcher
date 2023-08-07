@@ -12,7 +12,8 @@ export const CountryNameSearchInput = React.memo(() => {
     const dispatch = useDispatch();
 
     const handleSearch = (event) => {
-        if(event.keyCode === 13) {
+        event.preventDefault();
+        if(event.key === "Enter") {
             if (countryNameSearchState.searchTerm.trimStart() === '') {
                 dispatch(setCountries(allCountries.allCountries));
             } else {
@@ -29,10 +30,7 @@ export const CountryNameSearchInput = React.memo(() => {
                 {/* <form onSubmit={(e) => {e.preventDefault(); handleSearch();}} method="POST"> */}
                     <label htmlFor="countrySearchInput"><FontAwesomeIcon icon={faSearch} /></label>
                     <input placeholder='Search for a country...' type="text" id="countrySearchInput" onChange={(e) => dispatch(updateSearchTerm(e.target.value.trimStart()))} value={countryNameSearchState.searchTerm} 
-                        onKeyUp={(e) => {
-                            e.preventDefault();
-                            e.code === 'Enter' && handleSearch();
-                        }} 
+                        onKeyUp={handleSearch} 
                     />
                 {/* </form> */}
                 
