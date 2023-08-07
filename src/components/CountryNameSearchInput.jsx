@@ -26,7 +26,7 @@ export const CountryNameSearchInput = React.memo(() => {
                     <label htmlFor="countrySearchInput"><FontAwesomeIcon icon={faSearch} /></label>
                     <input placeholder='Search for a country...' type="text" id="countrySearchInput" onChange={(e) => dispatch(updateSearchTerm(e.target.value.trimStart()))} value={countryNameSearchState.searchTerm} onKeyUp={(e) => {
                         e.code === 'Enter' && handleSearch();
-                    }} onSubmit={handleSearch} />
+                    }} />
                 </form>
             </div>
         </>
