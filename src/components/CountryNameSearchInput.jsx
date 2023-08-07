@@ -12,7 +12,7 @@ export const CountryNameSearchInput = React.memo(() => {
     const dispatch = useDispatch();
 
     const handleSearch = (event) => {
-        if(event.keyCode === 13) {
+        if(event.key === "Enter") {
             if (countryNameSearchState.searchTerm.trimStart() === '') {
                 dispatch(setCountries(allCountries.allCountries));
             } else {
