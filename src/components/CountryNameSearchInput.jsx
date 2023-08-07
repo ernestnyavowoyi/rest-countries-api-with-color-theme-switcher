@@ -12,6 +12,7 @@ export const CountryNameSearchInput = React.memo(() => {
     const dispatch = useDispatch();
 
     const handleSearch = () => {
+        console.log(countryNameSearchState.searchTerm);
         if (countryNameSearchState.searchTerm.trimStart() === '') {
             dispatch(setCountries(allCountries.allCountries));
         } else {
