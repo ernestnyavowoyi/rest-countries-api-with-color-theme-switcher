@@ -315,7 +315,7 @@ p.country_name {
   margin-bottom: 20px;
   border-radius: 0.25rem;
   font-weight: 300 !important;
-  width: 110px;
+  /* width: 110px; */
   background-color: var(--white);
 }
 
@@ -532,7 +532,7 @@ ul.border_countries>li:last-child {
 
   .country_info,
   .border_countries {
-    width: 35rem !important;
+    width: 100% !important;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -631,6 +631,14 @@ ul.border_countries>li:last-child {
   
   .header_container_darkMode {
     box-shadow: 0 4px 2px 0 var(--very-dark-blue-light-mode) !important;
+  }
+
+  .app_title {
+    font-size: 24px;
+  }
+
+  .dark_mode_toggler {
+    font-size: 24px;
   }
 
   .country_card_details {
