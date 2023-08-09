@@ -62,7 +62,7 @@ body {
 .header_container_darkMode {
   background-color: var(--very-dark-blue) !important;
   color: var(--white) !important;
-  box-shadow: 0 4px 9px 0 var(--box-dark-mode) !important;
+  box-shadow: 0 4px 9px 0 var(--very-dark-blue-light-mode) !important;
 }
 
 .header {
@@ -173,6 +173,10 @@ input:focus {
   display: flex;
   align-items: center;
   /* border: 1px solid var(--very-light-gray) !important; */
+}
+
+.app_darkMode .region_filter_div select {
+  box-shadow: 0 2px 4px 0 var(--very-dark-blue-light-mode);
 }
 
 .region_filter_div select {
@@ -355,7 +359,7 @@ p.country_name {
 }
 
 .country_card_details .flag>img {
-  /* max-width: 320px !important; */
+  max-width: 320px !important;
   width: 100% !important;
   object-fit: cover;
   border-radius: 5.72px;
@@ -483,10 +487,11 @@ ul.border_countries>li:last-child {
   }
 
   .back_button_container {
-    position: unset;
+    /* position: unset; */
     padding-top: 100px;
-    margin-left: 5.5rem;
-    margin-top: 40px;
+    /* margin-left: 5.5rem; */
+    margin-top: 80px;
+    /* border: 2px solid crimson; */
   }
 
   .app_darkMode .back_button_container>button {
@@ -494,9 +499,9 @@ ul.border_countries>li:last-child {
   }
 
   .country_card_details {
-    width: 90% !important;
+    width: 100% !important;
     margin: 0 auto !important;
-    padding: 3rem 3rem !important;
+    /* padding: 3rem 3rem !important; */
   }
 
   .selected_country_name>p {
@@ -569,8 +574,8 @@ ul.border_countries>li:last-child {
   .back_button_container {
     position: unset;
     padding-top: 100px;
-    margin-left: 4rem;
-    margin-top: 40px;
+    /* margin-left: 4rem; */
+    margin-top: 80px;
     margin-bottom: 50px;
   }
 
@@ -624,6 +629,10 @@ ul.border_countries>li:last-child {
 
 @media (min-width: 1440px) {
   
+  .header_container_darkMode {
+    box-shadow: 0 4px 2px 0 var(--very-dark-blue-light-mode) !important;
+  }
+
   .country_card_details {
     width: 100% !important;
     padding: 0;
@@ -656,9 +665,4 @@ ul.border_countries>li:last-child {
     object-fit: cover !important;
   }
 
-
-}
-
-* {
-  outline: 1px solid #f00 !important;
 }
