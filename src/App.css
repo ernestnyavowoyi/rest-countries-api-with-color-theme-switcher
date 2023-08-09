@@ -307,6 +307,10 @@ p.country_name {
   height: 32px !important;
 }
 
+.back_button_container button {
+  padding: 10px;
+}
+
 .button {
   padding: 5px;
   box-shadow: 1px 0px 4px 0px var(--dark-gray);
