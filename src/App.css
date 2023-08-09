@@ -62,7 +62,7 @@ body {
 .header_container_darkMode {
   background-color: var(--very-dark-blue) !important;
   color: var(--white) !important;
-  box-shadow: 0 4px 9px 0 var(--box-dark-mode) !important;
+  box-shadow: 0 4px 9px 0 var(--very-dark-blue-light-mode) !important;
 }
 
 .header {
@@ -629,6 +629,10 @@ ul.border_countries>li:last-child {
 
 @media (min-width: 1440px) {
   
+  .header_container_darkMode {
+    box-shadow: 0 4px 2px 0 var(--very-dark-blue-light-mode) !important;
+  }
+
   .country_card_details {
     width: 100% !important;
     padding: 0;
