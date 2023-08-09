@@ -189,11 +189,6 @@ input:focus {
   padding: 20px !important;
 }
 
-.app_darkMode .region_filter_div select {
-  /* box-shadow: 0 2px 1px 0 var(--dark-blue) !important; */
-  box-shadow: 0 2px 9px 0 var(--dark-blue);
-}
-
 .region_filter_div select>option {
   background-color: var(--white) !important;
   color: var(--very-dark-blue) !important;
@@ -286,8 +281,8 @@ p.country_name {
 /* Styling of the country details route */
 
 .details_page_container {
-  padding-left: 5%;
-  padding-right: 5%;
+  /* padding-left: 5%; */
+  /* padding-right: 5%; */
   position: relative;
   margin: 0 auto;
   margin-top: -30px;
@@ -354,7 +349,7 @@ p.country_name {
 
 
 .country_card_details .flag {
-  border-radius: 1.25rem;
+  /* border-radius: 1.25rem; */
   height: 229px !important;
   /* background-color: orangered; */
 }
@@ -363,6 +358,7 @@ p.country_name {
   /* max-width: 320px !important; */
   width: 100% !important;
   object-fit: cover;
+  border-radius: 5.72px;
   max-height: 229px !important;
   height: 229px;;
 }
@@ -664,5 +660,5 @@ ul.border_countries>li:last-child {
 }
 
 * {
-  /* outline: 1px solid #f00 !important; */
+  outline: 1px solid #f00 !important;
 }
