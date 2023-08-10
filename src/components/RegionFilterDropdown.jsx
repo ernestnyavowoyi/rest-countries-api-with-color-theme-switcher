@@ -1,7 +1,8 @@
 import React from 'react'
 import { setSelectedRegion, clearSelectedRegion } from '../features/regionFilter/regionFilterSlice';
+import { clearSearchTerm } from '../features/nameSearch/nameSearchSlice';
 import { useSelector, useDispatch } from 'react-redux';
-import { filterCountriesByRegion as filter } from '../features/regionFilter/regionFilterSlice';
+// import { filterCountriesByRegion as filter } from '../features/regionFilter/regionFilterSlice';
 
 
 const RegionFilterDropdown = React.memo(() => {
@@ -12,7 +13,7 @@ const RegionFilterDropdown = React.memo(() => {
     const options = [
         { value: "", label: "All"},
         { value: "africa", label: "Africa"},
-        { value: "america", label: "America"},
+        { value: "americas", label: "America"},
         { value: "asia", label: "Asia"},
         { value: "europe", label: "Europe"},
         { value: "oceania", label: "Oceania"},
@@ -20,9 +21,13 @@ const RegionFilterDropdown = React.memo(() => {
 
     const handleChange = React.useCallback((event) => {
         const val = event.target.value.trim();
+        // clear the search term when the user changes the region
+        dispatch(clearSearchTerm());
+        
         if(val) {
             dispatch(setSelectedRegion(val));
-            dispatch(filter(val));
+            // I no longer need to dispatch the filter method as it is handled differently without a network request now.
+            // dispatch(filter(val)); 
         } else {
             dispatch(clearSelectedRegion());
         }

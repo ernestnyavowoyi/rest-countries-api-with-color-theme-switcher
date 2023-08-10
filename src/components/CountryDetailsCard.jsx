@@ -64,9 +64,12 @@ const CountryDetailsCard = () => {
             // console.log(info[0]);
             dispatch(setSelectedDisplayCountry(info[0]));
             const bordersCca3 = info[0].borders;
+            console.log(`the moment you find it!`);
+            console.log(bordersCca3);
+            console.log(`I hope you found it!`);
             let border_countries = [];
             // console.log(bordersCca3);
-            border_countries = bordersCca3.map((border) => {
+            border_countries = bordersCca3 && bordersCca3.map((border) => {
                 console.log(`Getting name for ${border}`);
                 return allCountries.filter((country) => country.cca3 === border)[0].name.common;
             });
@@ -123,17 +126,18 @@ const CountryDetailsCard = () => {
                                                     allCountries.length ? (
                                                         <ul className='border_countries'>
                                                             {
-                                                                selectedDisplayCountry.borders && selectedDisplayCountry.borders.map((border) => {
+                                                                (selectedDisplayCountry.borders && selectedDisplayCountry.borders.length) ?  selectedDisplayCountry.borders.map((border) => {
                                                                     const country_info = allCountries.filter((country) => country.cca3 === border)[0];
                                                                     return (
                                                                         <li data-country-code={country_info.cca3} className='button' onClick={handleBorderCountryClick} key={border}>{country_info.name.common}</li>
                                                                     );
-                                                                })
+                                                                }) : 
+                                                                <p>No border countries.</p>
                                                             }
                                                         </ul>
                                                     ) :
                                                         (
-                                                            <ul className='border_countries'>{selectedDisplayCountry.borders ? selectedDisplayCountry.borders.map((border) => (<li className='button' onClick={handleBorderCountryClick} key={border}>{border}</li>)) : (<span>No border countries.</span>)}</ul>
+                                                            <ul className='border_countries'>{selectedDisplayCountry.borders && selectedDisplayCountry.border.length ? selectedDisplayCountry.borders.map((border) => (<li className='button' onClick={handleBorderCountryClick} key={border}>{border}</li>)) : (<span>No border countries.</span>)}</ul>
                                                         )
                                                 }
 
