@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { API } from "../../utils/api";
 import axios from "axios";
+import { setSelectedRegion, clearSelectedRegion } from '../../features/regionFilter/regionFilterSlice';
 
 const initialState = {
     searchTerm: "",
@@ -23,7 +24,7 @@ const nameSearchSlice = createSlice({
     initialState,
     reducers: {
         updateSearchTerm: (state, action) => {
-            if(action.payload.trimStart() === "") {
+            if (action.payload.trimStart() === "") {
                 state.searchTerm = "";
             } else {
                 state.searchTerm = action.payload;
@@ -34,22 +35,41 @@ const nameSearchSlice = createSlice({
         },
     },
     extraReducers: (builder) => {
-        builder.addCase(searchCountriesByName.pending, (state) => {
-            state.searchResults = [];
-            state.loading = true;
-            state.errorMsg = "";
-        })
 
-        builder.addCase(searchCountriesByName.fulfilled, (state, action) => {
-            state.searchResults = action.payload;
+        // When a region is changed, clear the name
+        builder.addCase(setSelectedRegion, (state, action) => {
+            // state.searchTerm = "";
             state.loading = false;
             state.errorMsg = "";
+            console.log('Country search term has been cleared.');
         })
 
-        builder.addCase(searchCountriesByName.rejected, (state, action) => {
+        builder.addCase(clearSelectedRegion, (state) => {
             state.loading = false;
-            state.errorMsg = action.error.message;
+            state.errorMsg = '';
+            state.searchTerm = "";
+            console.log(`The country name has been cleared!`);
         })
+
+        // These extraReducers are no longer needed as we don't need to perform additional network or async request
+
+        // builder.addCase(searchCountriesByName.pending, (state) => {
+        //     state.searchResults = [];
+        //     state.loading = true;
+        //     state.errorMsg = "";
+        // })
+
+        // builder.addCase(searchCountriesByName.fulfilled, (state, action) => {
+        //     state.searchResults = action.payload;
+        //     state.loading = false;
+        //     state.errorMsg = "";
+        // })
+
+        // builder.addCase(searchCountriesByName.rejected, (state, action) => {
+        //     state.loading = false;
+        //     state.errorMsg = action.error.message;
+        // })
+
     }
 });
 

@@ -1,23 +1,30 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { searchCountriesByName, updateSearchTerm } from '../features/nameSearch/nameSearchSlice';
-import { setCountries } from '../features/country/countrySlice';
+import { setCountries, clearNameFilter, filterCountriesByName } from '../features/country/countrySlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-
+import { setSelectedRegion, clearSelectedRegion, getSelectedRegion } from '../features/regionFilter/regionFilterSlice';
 
 export const CountryNameSearchInput = React.memo(() => {
     const countryNameSearchState = useSelector((state) => state.nameSearch);
     const allCountries = useSelector((state) => state.allCountries);
+    const regionState = useSelector((state) => state.regionFilter);
     const dispatch = useDispatch();
 
     const handleSearch = (event) => {
         event.preventDefault();
         if(event.key === "Enter") {
             if (countryNameSearchState.searchTerm.trimStart() === '') {
-                dispatch(setCountries(allCountries.allCountries));
+                // I prefer this method of clearing the name to dispatching the setCountries() method.
+                // console.log(`The selected region is ${regionState.selectedRegion}`);
+                dispatch(setSelectedRegion(regionState.selectedRegion));
             } else {
-                dispatch(searchCountriesByName(countryNameSearchState.searchTerm.trimStart()))
+                console.log(`Searching for ${event.target.value}`);
+                dispatch(setSelectedRegion(regionState.selectedRegion));
+                // dispatch(searchCountriesByName(countryNameSearchState.searchTerm.trimStart()))
+                dispatch(filterCountriesByName(event.target.value));
+                console.log(`Search completed!`);
             }
         }
         return;

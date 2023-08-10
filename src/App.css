@@ -81,6 +81,10 @@ body {
   column-gap: 5px;
 }
 
+.dark_mode_toggler:hover {
+  cursor: pointer;
+}
+
 .filter_and_search_container {
   width: 100% !important;
   position: relative;
@@ -123,7 +127,7 @@ body {
 }
 
 .app_darkMode .country_name_search_input {
-  box-shadow: 0 2px 9px 0 var(--dark-blue);
+  box-shadow: 0 2px 4px 0 var(--very-dark-blue-light-mode);
   background-color: var(--very-dark-blue) !important;
 }
 
@@ -242,6 +246,10 @@ select#region_filter option:focus {
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
 }
 
+.country_card:hover {
+  cursor: pointer;
+}
+
 .app_darkMode .country_card {
   background-color: var(--box-dark-mode) !important;
   color: var(--white) !important;
@@ -307,6 +315,14 @@ p.country_name {
   height: 32px !important;
 }
 
+.back_button_container button {
+  padding: 10px 25px;
+}
+
+.back_button_container button:hover {
+  cursor: pointer;
+}
+
 .button {
   padding: 5px;
   box-shadow: 1px 0px 4px 0px var(--dark-gray);
@@ -315,7 +331,7 @@ p.country_name {
   margin-bottom: 20px;
   border-radius: 0.25rem;
   font-weight: 300 !important;
-  width: 110px;
+  /* width: 110px; */
   background-color: var(--white);
 }
 
@@ -418,6 +434,10 @@ ul.border_countries>li {
   text-align: center;
   margin: 5px 15px 5px 0 !important;
   padding: 5px;
+}
+
+ul.border_countries>li:hover {
+  cursor: pointer;
 }
 
 ul.border_countries>li:last-child {
@@ -532,7 +552,7 @@ ul.border_countries>li:last-child {
 
   .country_info,
   .border_countries {
-    width: 35rem !important;
+    width: 100% !important;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -631,6 +651,14 @@ ul.border_countries>li:last-child {
   
   .header_container_darkMode {
     box-shadow: 0 4px 2px 0 var(--very-dark-blue-light-mode) !important;
+  }
+
+  .app_title {
+    font-size: 24px;
+  }
+
+  .dark_mode_toggler {
+    font-size: 24px;
   }
 
   .country_card_details {
