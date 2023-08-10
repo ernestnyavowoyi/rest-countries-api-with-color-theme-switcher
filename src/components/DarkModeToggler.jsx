@@ -2,7 +2,8 @@ import React from 'react'
 import { useDispatch } from 'react-redux';
 import { toggleDarkMode } from '../features/darkMode/darkModeSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMoon } from '@fortawesome/free-solid-svg-icons'
+// import { faMoon, faCloudMoon } from '@fortawesome/free-solid-svg-icons';
+import { faMoon } from '@fortawesome/free-regular-svg-icons';
 
 
 const DarkModeToggler = () => {

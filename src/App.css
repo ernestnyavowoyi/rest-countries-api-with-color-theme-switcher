@@ -51,12 +51,15 @@ body {
   font-weight: 800;
   padding-bottom: .5rem;
   height: 80px;
-  box-shadow: 0px 4px 2px var(--very-light-gray);
+  box-shadow: 0px 4px 2px 0 var(--dark-gray);
   background-color: var(--white);
   color: var(--very-dark-blue) !important;
   margin-bottom: 100px;
   padding-right: 5% !important;
   padding-left: 5% !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .header_container_darkMode {
@@ -70,7 +73,7 @@ body {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 10px 0px 10px 0px !important;
+  /* margin: 10px 0px 10px 0px !important; */
   /* max-width: 1440px !important; */
   /* padding: 0 1.25rem 0 1.25rem !important; */
 }
@@ -436,8 +439,8 @@ ul.border_countries {
 
 ul.border_countries>li {
   /* width: 100%; */
-  max-width: 33% !important;
-  min-width: 96px !important;
+  /* max-width: 33% !important; */
+  /* min-width: 96px !important; */
   text-align: center;
   margin: 5px 15px 5px 0 !important;
   padding: 5px;
