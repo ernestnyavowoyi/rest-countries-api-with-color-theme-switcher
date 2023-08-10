@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { API } from "../../utils/api";
+import { clearNameFilter } from "../country/countrySlice";
 
 const initialState = {
     selectedRegion: "",
@@ -16,7 +17,6 @@ export const filterCountriesByRegion = createAsyncThunk(
     }
 )
 
-
 const regionFilterSlice = createSlice({
     name: 'regionFilter',
     initialState,
@@ -27,13 +27,19 @@ const regionFilterSlice = createSlice({
             const region = action.payload.trim();
             if(region) {
                 state.selectedRegion = region;
+            } else {
+                state.selectedRegion = "";
             }
         },
         clearSelectedRegion: (state) => {
             state.selectedRegion = "";
-        }
+        },
     },
     extraReducers: (builder) => {
+
+        // These extra reducers are no longer needed as we don't need to perform another network request to filter the countries by their region.
+
+        /*
         builder.addCase(filterCountriesByRegion.pending, (state) => {
             state.results = [];
             state.loading = true;
@@ -49,9 +55,11 @@ const regionFilterSlice = createSlice({
             state.loading = false;
             state.errorMsg = action.error.message;
         })
+        */
+
     }
 })
 
 export default regionFilterSlice.reducer;
 
-export const { setSelectedRegion, clearSelectedRegion } = regionFilterSlice.actions;
+export const { setSelectedRegion, clearSelectedRegion} = regionFilterSlice.actions;

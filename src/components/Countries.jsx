@@ -29,7 +29,7 @@ const Countries = React.memo(() => {
             <div className="countries_container">
                 {
                     countriesState.loading ?
-                        <p>Loading... Please wait...</p>
+                        <p>Loading Countries... Please wait...</p>
                         :
                         (
                             (countriesState.errorMsg.length && countriesState.displayedCountries.length)
@@ -38,10 +38,19 @@ const Countries = React.memo(() => {
                                 countriesState.displayedCountries.map((country) => <CountryCard key={country.cca3} info={country} />)
                         )
                 }
+                
                 {
-                    nameSearchState.searchTerm && !nameSearchState.searchResults ? <p className='no_countries_found'>No results found</p>
+                    nameSearchState.searchTerm && !countriesState.displayedCountries.length ? <p className='no_countries_found'>Found no countries matching {nameSearchState.searchTerm}.</p>
                     :
-                    nameSearchState.errorMsg && <p className='no_countries_found_error'>No countries matched "<span>{nameSearchState.searchTerm}</span>". Error: <span>{nameSearchState.errorMsg}</span></p>
+                    nameSearchState.errorMsg && <p className='no_countries_found_error'>No countries matched "<span style={{ fontWeight: '800' }}>{nameSearchState.searchTerm}</span>". Error: <span>{nameSearchState.errorMsg}</span></p>
+                }
+
+                {
+                    /* The code below is no longer needed */
+
+                    // nameSearchState.searchTerm && !nameSearchState.searchResults ? <p className='no_countries_found'>No results found</p>
+                    // :
+                    // nameSearchState.errorMsg && <p className='no_countries_found_error'>No countries matched "<span>{nameSearchState.searchTerm}</span>". Error: <span>{nameSearchState.errorMsg}</span></p>
                 }
             </div>
         </>
