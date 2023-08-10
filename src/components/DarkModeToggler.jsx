@@ -17,7 +17,7 @@ const DarkModeToggler = () => {
     <>
         <div onClick={handleNightModeToggle} className='dark_mode_toggler'>
               <div><FontAwesomeIcon icon={faMoon}/></div>
-              <div>Dark Mode</div>
+              <div className='dark_mode'>Dark Mode</div>
         </div>
     </>
   )

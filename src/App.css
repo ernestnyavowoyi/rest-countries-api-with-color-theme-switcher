@@ -75,10 +75,17 @@ body {
   /* padding: 0 1.25rem 0 1.25rem !important; */
 }
 
+.app_title {
+  font-size: 14px;
+  font-weight: 800;
+}
+
 .dark_mode_toggler {
   display: flex;
   justify-content: space-between;
   column-gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
 }
 
 .dark_mode_toggler:hover {
@@ -108,7 +115,7 @@ body {
 }
 
 .form_input > label {
-  padding: 0px 10px;
+  padding: 0px 25px;
 }
 
 .filter_and_search_container {
