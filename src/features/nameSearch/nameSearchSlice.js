@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { API } from "../../utils/api";
 import axios from "axios";
-import { setSelectedRegion, clearSelectedRegion } from '../../features/regionFilter/regionFilterSlice';
+import { setSelectedRegion, clearSelectedRegion } from '../regionFilter/regionFilterSlice';
 
 const initialState = {
     searchTerm: "",
