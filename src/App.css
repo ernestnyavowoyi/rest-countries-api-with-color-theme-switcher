@@ -710,7 +710,8 @@ ul.border_countries>li:last-child {
   }
 
   .country_name_search_input {
-    box-shadow: 0 2px 4px 0 var(--very-dark-blue-light-mode);
+    /* box-shadow: 0 1px 2px 0 var(--very-light-gray) !important; */
+      box-shadow: 0 2px 1px 0 var(--dark-gray);
   }
 
   .country_card {
